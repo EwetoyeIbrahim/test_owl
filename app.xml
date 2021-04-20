@@ -1,9 +1,80 @@
 <templates>
-  <div t-name="Greeter" class="greeter" t-on-click="toggle">
-    <t t-esc="state.word"/>, <t t-esc="props.name"/>
-  </div>
+    <!-- Navigation -->
+    <nav t-name="Nav" class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <strong>EWETOYE Ibrahim</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Publications">
+                            <i class="fas fa-project-diagram pr-1"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Skills">
+                            <i class="fas fa-wrench pr-1"></i>
+                            Skills
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Experience">
+                            <i class="fas fa-briefcase pr-1"></i>
+                            Experience
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Education">
+                            <i class="fas fa-graduation-cap pr-1"></i>
+                            Education
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <div t-name="App">
-    <Greeter name="state.name"/>
-  </div>
+
+    <!-- Full Page Image Header with Vertically Centered Content -->
+    <header t-name="Header">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-right">
+                    <a href="https://github.com/EwetoyeIbrahim">
+                        <i class="fab fa-github-alt fa-3x pr-3 text-dark"></i>
+                    </a>
+                    <a href="https://linkedin.com/Ewetoye" class="text-primary">
+                        <i class="fab fa-linkedin-in fa-3x pr-3" style="color: #0e76a8;"></i>
+                    </a>
+                    <a href="mailto:i.ewetoye@gmail.com">
+                        <i class="far fa-envelope fa-3x text-danger"></i>
+                    </a>
+                    <h1 style="font-size:4vw;">Full Stack Developer</h1>
+                    <p class="lead" style="font-size:2vw;">Knowing is not enough, we must apply</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+    <div t-name="EntryCard">
+        <div class="p-3 bg-light" t-foreach="items" t-as="item" t-key="item.id">
+            <h5 t-esc="item.title"></h5>
+            <p t-esc="item.date"></p>
+            <p t-raw="item.about"></p>
+        </div>
+    </div>
+
+    <div t-name="App" class="app">
+        <Nav />
+        <Header />
+        <EntryCard />
+
+    </div>
 </templates>

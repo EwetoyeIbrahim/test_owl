@@ -1,35 +1,35 @@
-
-/**
- * This is the javascript code defined in the playground.
- * In a larger application, this code should probably be moved in different
- * sub files.
- */
 function app() {
-  // In this example, we show how components can be defined and created.
-  const { Component, useState, mount } = owl;
+    class Nav extends owl.Component { }
+    class Header extends owl.Component { }
+    class EntryCard extends owl.Component {
+        constructor() {
+            super(...arguments);
+            this.items = [
+                {
+                    id: 3,
+                    title: "fsfgshsj",
+                    date: "buy milk",
+                    about: "yuu",
+                },
+                {
+                    id: 4,
+                    title: "ertyujbhjkl",
+                    date: "buy cake",
+                    about: "fjkjjjjj",
+                },
+            ];
+        }
+    }
 
-  class Greeter extends Component {
-      constructor() {
-          super(...arguments);
-          this.state = useState({ word: 'Hello' });
-      }
+    class App extends owl.Component { }
+    App.components = { Nav, EntryCard, Header };
 
-      toggle() {
-          this.state.word = this.state.word === 'Hi' ? 'Hello' : 'Hi';
-      }
-  }
 
-  // Main root component
-  class App extends Component {
-      constructor() {
-          super(...arguments);
-          this.state = useState({ name: 'World'});
-      }
-  }
-  App.components = { Greeter };
+    //------------------------------------------------------------------------------
+    // Application Startup
+    //------------------------------------------------------------------------------
 
-  // Application setup
-  mount(App, { target: document.body });
+    owl.mount(App, { target: document.body });
 
 }
 
@@ -38,17 +38,17 @@ function app() {
  * This code load templates, and make sure everything is properly connected.
  */
 async function start() {
-  let templates;
-  try {
-    templates = await owl.utils.loadFile('app.xml');
-  } catch(e) {
-    console.error(`This app requires a static server.  If you have python installed, try 'python app.py'`);
-    return;
-  }
-  const env = { qweb: new owl.QWeb({templates})};
-  owl.Component.env = env;
-  await owl.utils.whenReady();
-  app();
+    let templates;
+    try {
+        templates = await owl.utils.loadFile('app.xml');
+    } catch (e) {
+        console.error(`This app requires a static server.  If you have python installed, try 'python app.py'`);
+        return;
+    }
+    const env = { qweb: new owl.QWeb({ templates }) };
+    owl.Component.env = env;
+    await owl.utils.whenReady();
+    app();
 }
 
 start();
